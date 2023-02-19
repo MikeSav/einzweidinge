@@ -10,13 +10,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Lily+Script+One&family=Montserrat:wght@100;300&family=Oswald:wght@200;300;400&display=swap"
           rel="stylesheet">
     <script src="https://kit.fontawesome.com/08e4ac79ba.js" crossorigin="anonymous"></script>
+    <script src="assets/js/scripts.js"></script>
 </head>
 <body>
+<!-- menu -->
+<div class="ham-menu">
+    <div class="ham-menu__close"><i class="fa-solid fa-circle-xmark" onclick="closeHamburgerMenu()"></i></div>
+    <div class="ham-menu__items">
+        <ul class="ham-menu__items__list">
+            <li><a href="#" class="ham-menu__link">heim</a></li>
+            <li><a href="#" class="ham-menu__link">über mich</a></li>
+            <li><a href="#" class="ham-menu__link">angebot</a></li>
+            <li><a href="#" class="ham-menu__link">blog</a></li>
+            <li><a href="#" class="ham-menu__link">english</a></li>
+            <li><a href="#" class="ham-menu__link">kontakt</a></li>
+        </ul>
+    </div>
+</div>
+
 <!-- navigation -->
 <div class="top-nav">
     <div class="top-nav__wrapper">
         <div>
-            <i class="fa-solid fa-bars"></i>
+            <i class="fa-solid fa-bars" onclick="showHamburgerMenu()"></i>
         </div>
         <div class="top-nav__wrapper__social">
             <i class="fa-brands fa-twitter"></i>

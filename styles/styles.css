@@ -44,6 +44,9 @@ ul, li, h1, h2, h3 {
 }
 
 /* custom stuff */
+.body__no-scroll {
+    overflow: hidden;
+}
 .button-link {
     display: inline-block;
     border: 5px solid #FFFFFF;
@@ -79,6 +82,48 @@ ul, li, h1, h2, h3 {
     color: #FFFFFF;
     box-shadow: inset 50rem 0 0 0 var(--primary);
     transition: box-shadow 0.5s ease-in-out;
+}
+
+.ham-menu {
+    background-color: rgba(0, 0, 0, 0.8);
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    overflow: hidden;
+    color: #fff;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    transform: translateY(-100%);
+    transition: transform 0.5s ease;
+}
+
+.ham-menu__items {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ham-menu__items__list li {
+    display: flex;
+    justify-content: center;
+}
+
+.ham-menu__link {
+    font-family: var(--heading);
+    font-size: 3rem;
+    text-decoration: none;
+    color: #FFFFFF;
+    font-weight: 200;
+    text-transform: capitalize;
+}
+
+.ham-menu__close {
+    font-size: 3rem;
+    text-align: right;
 }
 
 .top-nav {
@@ -770,7 +815,7 @@ ul, li, h1, h2, h3 {
     }
 
     .intro__image {
-        max-width:  250px;
+        max-width: 250px;
         margin-top: 3rem;
     }
 
