@@ -145,6 +145,10 @@ ul, li, h1, h2, h3 {
     opacity: 0;
 }
 
+.top-nav i, .ham-menu i {
+    cursor: pointer;
+}
+
 .top-nav--bg {
     background-color: rgba(0, 0, 0, 0.1);
 }
