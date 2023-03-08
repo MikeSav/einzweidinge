@@ -1,13 +1,15 @@
 /* add nav style on scroll */
 document.addEventListener('DOMContentLoaded', function () {
-  var observer = new IntersectionObserver(function (entries) {
+  let observer = new IntersectionObserver(function (entries) {
     if (!entries[0].isIntersecting) {
       document.querySelector('.top-nav').classList.add('top-nav--bg');
+      document.querySelector('.top-nav__logo').classList.add('top-nav__logo--shrink');
     } else {
       document.querySelector('.top-nav').classList.remove('top-nav--bg');
+      document.querySelector('.top-nav__logo').classList.remove('top-nav__logo--shrink');
     }
-  }, { threshold: [0] });
-  observer.observe(document.querySelector('.intro'));
+  }, { threshold: [0.01] });
+  observer.observe(document.querySelector('.intro') || document.querySelector('.angebot-intro'));
 });
 
 /**

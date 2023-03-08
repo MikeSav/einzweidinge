@@ -1,28 +1,37 @@
-@property --service-color {
-    syntax: '<color>';
-    inherits: false;
-    initial-value: #FEB139;
-}
-
 :root {
-    --primary: #08A9BA;
+    --primary: #40ADAD;
     --header-primary: #131112;
+
     /* ideas */
-    --color1: #FEB139;
-    --color2: #F55353;
-    --color3: #D5B46E; /* was #F1E0AC; */
+    --color1: #0D6575;
+    --color2: #D5B46E;
+    --color3: #FF7161;
     --color4: #143F6B;
-    --color5: #2f8f9d;
-    --service-color: var(--color1);
+    --color5: #2F8F9D;
+
+    /* product colors */
+    --ordnungscoaching: var(--primary);
+    --kleidershrank: var(--color1);
+    --homeoffice: var(--color2);
+    --umzug: var(--color3);
+    --service-color: var(--primary);
     --max-width: 985px;
-    --img-box-shadow: 0 0.625rem 1.25rem rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%);
     --heading: 'Oswald';
     --text: 'Montserrat';
-    --handwriting: 'Lily Script One';
-    --h1-font-size: 5.1rem;
+    --handwriting: 'brightwallregular';
+    --h1-font-size: 4rem;
     --h2-font-size: 3rem;
     --h3-font-size: 2rem;
     --blog-color: var(--primary);
+}
+
+/* custom fonts */
+@font-face {
+    font-family: brightwallregular;
+    src: url('fonts/brightwall_regular-webfont.woff2') format('woff2'),
+    url('fonts/brightwall_regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 /* some reset shit */
@@ -32,8 +41,6 @@ html {
 
 body {
     background-color: #FFFFFF;
-    margin: 0;
-    padding: 0;
     font-family: var(--text);
 }
 
@@ -41,12 +48,22 @@ ul, li, h1, h2, h3 {
     margin: 0;
     padding: 0;
     list-style: none;
+    font-weight: inherit;
+    font-size: inherit;
 }
 
 /* custom stuff */
+
+/* need to add body class due to wordpress not liking reset */
+.body {
+    margin: 0;
+    padding: 0;
+}
+
 .body__no-scroll {
     overflow: hidden;
 }
+
 .button-link {
     display: inline-block;
     border: 5px solid #FFFFFF;
@@ -55,11 +72,10 @@ ul, li, h1, h2, h3 {
     background: transparent;
     text-decoration: none;
     text-transform: uppercase;
-    box-shadow: inset 0 0 0 0 var(--color1);
+    box-shadow: inset 0 0 0 0 var(--color5);
 }
 
-.button-link--cursive {
-    font-family: cursive;
+.button-link--intro {
     letter-spacing: .1rem;
     line-height: 1.5rem;
     text-transform: none;
@@ -74,7 +90,7 @@ ul, li, h1, h2, h3 {
 }
 
 .button-link:hover {
-    box-shadow: inset 50rem 0 0 0 var(--color1);
+    box-shadow: inset 50rem 0 0 0 var(--color5);
     transition: box-shadow 0.5s ease-in-out
 }
 
@@ -84,6 +100,10 @@ ul, li, h1, h2, h3 {
     transition: box-shadow 0.5s ease-in-out;
 }
 
+.button-link--gap {
+    margin-right: 0.5rem;
+}
+
 .ham-menu {
     background-color: rgba(0, 0, 0, 0.8);
     box-sizing: border-box;
@@ -91,7 +111,7 @@ ul, li, h1, h2, h3 {
     height: 100vh;
     position: fixed;
     overflow: hidden;
-    color: #fff;
+    color: #FFFFFF;
     z-index: 2000;
     display: flex;
     flex-direction: column;
@@ -105,11 +125,19 @@ ul, li, h1, h2, h3 {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .ham-menu__items__list li {
     display: flex;
     justify-content: center;
+}
+
+.ham-menu__items__social-list li {
+    display: inline-block;
+    font-size: 2rem;
+    margin-top: 2rem;
+    margin-right: 1rem;
 }
 
 .ham-menu__link {
@@ -134,23 +162,32 @@ ul, li, h1, h2, h3 {
     bottom: auto;
     z-index: 1000;
     display: flex;
-    overflow: hidden;
+    overflow: visible;
     justify-content: center;
     align-items: center;
     color: #FFFFFF;
-    padding: 1.5rem 0;
-    font-size: 1.5rem;
+    padding: 1rem 0;
     animation: .5s ease-in-out 0.3s 1 forwards imgFade;
     transition: background-color 0.5s linear;
     opacity: 0;
+    font-size: 1.1rem;
+}
+
+.top-nav--bg {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.top-nav__logo {
+    height: 150px;
+    transition: height 0.5s linear;
+}
+
+.top-nav__logo--shrink {
+    height: 80px;
 }
 
 .top-nav i, .ham-menu i {
     cursor: pointer;
-}
-
-.top-nav--bg {
-    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .top-nav__wrapper {
@@ -161,9 +198,23 @@ ul, li, h1, h2, h3 {
     margin: 0 1.5rem;
 }
 
-.top-nav__wrapper__social i {
+.top-nav__wrapper__links {
+    align-self: center;
+}
+
+.top-nav__wrapper__links__list {
+    display: block;
+    margin-bottom: 0.5rem;
+    text-align: end;
+}
+
+.top-nav__wrapper__links__list li {
     display: inline-block;
     margin-left: 0.5rem;
+}
+
+.top-nav__hamburger, .top-nav__hamburger::before {
+    display: none;
 }
 
 .intro {
@@ -171,61 +222,39 @@ ul, li, h1, h2, h3 {
     flex-direction: column;
     width: 100%;
     height: 100vh;
-    justify-content: center;
+    justify-content: end;
     align-items: center;
     box-sizing: border-box;
-    background: var(--primary);
-    background: linear-gradient(-60deg,
-    var(--primary) 0% 10%,
-    #0ca4b5 10% 15%,
-    var(--primary) 15% 25%,
-    #0baebf 25% 30%,
-    var(--primary) 30% 60%,
-    #0baebf 60% 65%,
-    var(--primary) 65% 90%,
-    #0baebf 90% 95%,
-    var(--primary) 95%);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
+    background-color: #000000;
 }
 
-.intro__image {
-    max-width: 100%;
-    border-radius: 50%;
-    border: 0.625rem solid #FFFFFF;
-    box-sizing: border-box;
-    box-shadow: var(--img-box-shadow);
-    animation: .5s ease-in-out 0.3s 1 forwards imgFade;
-    opacity: 0;
-}
-
-.intro__name {
-    font-family: var(--heading);
-    font-size: var(--h1-font-size);
-    color: var(--header-primary);
-    text-transform: uppercase;
-    font-weight: 200;
-    letter-spacing: 0.1rem;
-    animation: .5s ease-in-out 0.6s 1 forwards imgFade;
-    opacity: 0;
-}
-
-.intro__name--double {
-    /*  text-shadow: 5px 5px 0 var(--color1); */
+.intro::before {
+    content: '';
+    background: url('css-images/backgrounds/einzewidinge-ordnungscoach-berlin.jpg') no-repeat center center fixed;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.8;
 }
 
 .intro__strap {
     color: #FFFFFF;
-    font-size: 1.5rem;
+    font-size: var(--h1-font-size);
     font-weight: 700;
     letter-spacing: 0.05rem;
     animation: .5s ease-in-out 0.9s 1 forwards imgFade;
     opacity: 0;
+    font-family: var(--handwriting);
+    text-align: center;
+    margin: 0 1rem;
 }
 
 .intro__products {
     padding: 0.8rem 1rem;
-    margin-top: 0.8rem;
+    margin: 0.8rem 0.8rem 3rem;
     animation: .5s ease-in-out 1.2s 1 forwards imgFade;
     opacity: 0;
 }
@@ -235,14 +264,25 @@ ul, li, h1, h2, h3 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 3.125rem 3.125rem;
-    border-top: 1px solid #118BA8;
+    padding: 3.125rem;
 }
 
-.services__list {
-    display: flex;
-    flex-direction: column;
+.services__wrapper {
     max-width: var(--max-width);
+}
+
+.services__pre-header {
+    font-family: var(--heading);
+    font-size: var(--h3-font-size);
+    text-transform: uppercase;
+    font-weight: 200;
+    letter-spacing: 0.1rem;
+    text-align: center;
+
+}
+
+.service__header {
+    margin-bottom: 1.25rem;
 }
 
 .service__header__heading {
@@ -256,56 +296,134 @@ ul, li, h1, h2, h3 {
     max-width: var(--max-width);
 }
 
-.service {
+.services__list {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 1.25rem 0;
+    max-width: var(--max-width);
+    gap: 2rem;
+    margin-top: 1rem;
 }
 
-.service__description {
-    background-color: var(--service-color);
+.services__list--cols {
+    flex-direction: column;
+}
+
+.services__card {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 100%;
     color: #FFFFFF;
+}
+
+.services__card__details {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    background-color: var(--service-color);
     font-weight: 300;
     padding: 0.938rem;
+    border-radius: 0 0 5px 5px;
+}
+
+.services__card__details--kleiderschrank {
+    --service-color: var(--kleidershrank);
+}
+
+.services__card__details--homeoffice {
+    --service-color: var(--homeoffice);
+}
+
+.services__card__details--umzug {
+    --service-color: var(--umzug);
+}
+
+.services__card__details__header {
+    font-family: var(--heading);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    height: 3rem;
+    margin: 1.25rem 0;
+    text-align: center;
+}
+
+.services__card__details__teaser {
+    line-height: 1.5rem;
+    margin-bottom: 1.25rem;
+    text-align: center;
+}
+
+.services__card__details__control {
+    text-align: center;
+}
+
+.services__card__top {
+    display: flex;
+    height: 300px;
+    max-height: 300px;
+    background-image: url('css-images/backgrounds/einzewidinge-ordnungscoach.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    border-radius: 5px 5px 0 0;
+}
+
+.services__card__top--umzug {
+    background-image: url('css-images/backgrounds/einzewidinge-umzug-ohne-ballast.jpg');
+    background-size: cover;
+    background-position: center 30%;
+}
+
+.services__card__top--homeoffice {
+    background-image: url('css-images/backgrounds/einzewidinge-homeoffice-mit-struktur.jpg');
+    background-size: cover;
+    background-position: 52%;
+}
+
+.services__card__top--kleiderschrank {
+    background-image: url('css-images/backgrounds/einzewidinge-klarheit-im-kleiderschrank.jpg');
+    background-size: cover;
+    background-position: 0% 30%;
+}
+
+.services__row {
     border-radius: 5px;
-    flex: 1;
-    line-height: 1.8rem;
-}
-
-.service__description__header {
-    font-family: var(--handwriting);
+    overflow: hidden;
     color: #FFFFFF;
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: 0.1rem;
-    margin-bottom: 0.625rem;
+    display: flex;
+
+    /* Todo: TBD */
+    min-height: 400px;
 }
 
-.service__visual {
-    margin-left: -1.875rem;
+.services__row__visual {
+    /* Todo: TBD */
+    background-image: url('css-images/backgrounds/einzewidinge-video-call.jpg');
+    background-size: cover;
+    flex: 0 1 auto;
+    min-width: 300px;
 }
 
-.service__visual__photo {
-    max-width: 100%;
-    border-radius: 50%;
-    border: 0.625rem solid var(--service-color);
-    box-sizing: border-box;
+.services__row--kontaktiere {
+    background-color: var(--primary);
 }
 
-.service--kleiderschrank .service__visual__photo,
-.service--kleiderschrank .service__description {
-    --service-color: var(--color2);
+.services__row--erstgespraech {
+    background-color: var(--color5);
 }
 
-.service--homeoffice .service__visual__photo,
-.service--homeoffice .service__description {
-    --service-color: var(--color4);
+.services__row--ort {
+    background-color: var(--color2);
 }
 
-.service--umzug .service__visual__photo,
-.service--umzug .service__description {
-    --service-color: var(--color3);
+.services__row--design {
+    background-color: var(--color3);
+}
+
+.services__row .services__card__details__header {
+    height: revert;
+}
+
+.services__row .services__card__details__teaser {
+    padding: 1rem 2rem 0;
 }
 
 .blog {
@@ -319,7 +437,7 @@ ul, li, h1, h2, h3 {
     display: flex;
     flex-direction: column;
     margin: 1.5rem;
-    padding: 3.125rem 3.125rem;
+    padding: 3.125rem;
 }
 
 .blog__header {
@@ -353,15 +471,19 @@ ul, li, h1, h2, h3 {
 .blog__card__img {
     display: flex;
     justify-content: center;
-    margin-bottom: -3.125rem;
     position: relative;
+    height: 300px;
+    max-height: 300px;
+    background: url('css-images/blog/blog1.jpg');
+    background-size: cover;
+    border-radius: 5px 5px 0 0;
 }
 
 .blog__card__img__photo {
     max-width: 100%;
-    border-radius: 50%;
-    border: 0.625rem solid var(--blog-color);
-    box-sizing: border-box
+    border-radius: 5px 5px 0 0;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .blog__card__details {
@@ -369,8 +491,8 @@ ul, li, h1, h2, h3 {
     flex-direction: column;
     background-color: var(--blog-color);
     font-weight: 300;
-    padding: 2.5rem 0.938rem 0.938rem;
-    border-radius: 5px;
+    padding: 0.938rem;
+    border-radius: 0 0 5px 5px;
 }
 
 .blog__card__details__header {
@@ -384,6 +506,7 @@ ul, li, h1, h2, h3 {
 
 .blog__card__details__teaser {
     line-height: 1.5rem;
+    text-align: center;
 }
 
 .blog__card__details__date {
@@ -399,9 +522,9 @@ ul, li, h1, h2, h3 {
 
 .clean-up {
     display: flex;
-    background: url('../assets/images/backgrounds/background2.png') var(--color4);
     color: #FFFFFF;
     justify-content: center;
+    background: var(--color5);
 }
 
 .clean-up__wrapper {
@@ -409,7 +532,7 @@ ul, li, h1, h2, h3 {
     display: flex;
     flex-direction: column;
     margin: 1.5rem;
-    padding: 3.125rem 3.125rem;
+    padding: 3.125rem;
 }
 
 .clean-up__header {
@@ -434,18 +557,9 @@ ul, li, h1, h2, h3 {
     margin-bottom: 2.5rem;
 }
 
-.clean-up__description__visual {
-    flex: 1 1 auto;
-    margin-right: 2.5rem;
-}
-
-.clean-up__description__visual__img {
-    border-radius: 50%;
-    border: 0.625rem solid #FFFFFF;
-}
-
 .clean-up__description__text {
     flex: 1 1 auto;
+    text-align: center;
 }
 
 .clean-up__why {
@@ -506,39 +620,33 @@ ul, li, h1, h2, h3 {
     align-items: center;
 }
 
-.fake-image {
-    width: 3.125rem;
-    height: 3.125rem;
-    background-color: var(--color1);
-    border-radius: 50%;
-    border: 0.625rem solid #FFFFFF;
+.clean-up__why__cards__card__icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--color4);
-    font-family: var(--handwriting);
+    width: 3.125rem;
+    height: 3.125rem;
     font-size: 2rem;
     font-weight: 700;
 }
 
 .testimonial {
-    --second-animation-color: #0ca4b5;
-    --second-animation-color: rgba(250, 157, 20, 0.9);
-    --second-animation-color: var(--color2);
+    --second-animation-color: rgba(255, 113, 97, .95);
+
     display: flex;
-    background: var(--color1);
     color: #FFFFFF;
     justify-content: center;
-    border-top: 1px solid white;
+    border-top: 5px solid white;
+    border-bottom: 5px solid white;
 
     /* experiment */
     background: linear-gradient(-60deg,
-    #0ca4b5 0% 15%,
-    var(--color1) 15% 25%,
+    var(--color3) 0% 15%,
+    var(--color3) 15% 25%,
     var(--second-animation-color) 25% 30%,
-    var(--color1) 30% 60%,
+    var(--color3) 30% 60%,
     var(--second-animation-color) 60% 65%,
-    var(--color1) 65% 90%,
+    var(--color3) 65% 90%,
     var(--second-animation-color) 90%);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
@@ -566,9 +674,8 @@ ul, li, h1, h2, h3 {
 }
 
 .testimonial__header figcaption {
-    font-family: var(--handwriting);
     text-transform: capitalize;
-    font-size: 1.5rem;
+    font-size: var(--h3-font-size);
     font-style: italic;
 }
 
@@ -580,7 +687,6 @@ ul, li, h1, h2, h3 {
 .questions {
     display: flex;
     justify-content: center;
-    background: url('../assets/images/backgrounds/background1.png') #FFFFFF;
 }
 
 .questions__wrapper {
@@ -588,7 +694,7 @@ ul, li, h1, h2, h3 {
     max-width: var(--max-width);
     display: flex;
     margin: 1.5rem;
-    padding: 3.125rem 3.125rem;
+    padding: 3.125rem;
     flex-direction: column;
 }
 
@@ -616,7 +722,7 @@ ul, li, h1, h2, h3 {
 
 .questions__overview__icon {
     flex: 1 1 auto;
-    padding: 1.875rem 2.5rem 2.5rem 2.5rem;
+    padding: 1.875rem 2.5rem 2.5rem;
 }
 
 .questions__overview__icon__circle {
@@ -629,14 +735,15 @@ ul, li, h1, h2, h3 {
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) infinite;
 }
 
 .questions__overview__text {
-    display: flex;
-    align-items: center;
-    font-size: 1.5rem;
-    letter-spacing: 0.05rem;
+    font-family: var(--heading);
+    font-size: var(--h3-font-size);
+    text-transform: uppercase;
+    font-weight: 200;
+    text-align: center;
+    letter-spacing: 0.1rem;
 }
 
 .questions__control {
@@ -658,32 +765,34 @@ ul, li, h1, h2, h3 {
     max-width: var(--max-width);
     display: flex;
     margin: 1.5rem;
-    padding: 3.125rem 3.125rem 0;
     flex-direction: column;
 }
 
 .footer__row {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1.25rem;
-    align-items: center;
 }
 
 .footer__logo {
-    font-family: var(--heading);
-    font-size: var(--h2-font-size);
-    color: var(--header-primary);
-    text-transform: uppercase;
-    font-weight: 200;
-    letter-spacing: 0.1rem;
+   max-height: 150px;
+}
+
+.footer__certificates {
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
 
 .footer__social {
-    font-size: 2em;
+    font-size: 1.4em;
+    letter-spacing: 0.1rem;
+    margin-top: 1rem;
+    margin-left: 0.6rem;
 }
 
 .footer__list li {
     display: inline-block;
+    margin-left: 0.5rem;
 }
 
 .text-link {
@@ -693,12 +802,16 @@ ul, li, h1, h2, h3 {
     margin: 0 0.5rem 0 0;
 }
 
+.text-link:last-of-type {
+    margin: 0;
+}
+
 .text-link:hover {
     color: #FFFFFF;
 }
 
-.text-link:before {
-    content: "";
+.text-link::before {
+    content: '';
     position: absolute;
     display: block;
     width: 100%;
@@ -713,6 +826,421 @@ ul, li, h1, h2, h3 {
 
 .text-link:hover::before {
     transform: scaleX(1);
+}
+
+.page-intro {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 50vh;
+    justify-content: end;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: #000000;
+}
+
+
+/* angebot page */
+.angebot-intro {
+    /* ToDo */
+}
+
+.angebot-intro::before {
+    content: '';
+    background: url('css-images/backgrounds/einzewidinge-ordnungscoach.jpg') no-repeat center center fixed;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 50%;
+    left: 0;
+    opacity: 0.8;
+    background-position: 0 30%;
+}
+
+.angebot, .uber-mich {
+    display: flex;
+    color: #FFFFFF;
+    justify-content: center;
+    background: var(--ordnungscoaching);
+    border-top: 5px solid #FFFFFF;
+}
+
+.angebot__wrapper, .uber-mich__wrapper {
+    width: var(--max-width);
+    max-width: var(--max-width);
+    display: flex;
+    margin: 1.5rem;
+    padding: 3.125rem 0;
+    flex-direction: column;
+}
+
+.angebot__header, .uber-mich__header {
+    flex: 1;
+    margin-bottom: 1.25rem;
+}
+
+.angebot__header__heading, .uber-mich__header__heading {
+    font-family: var(--heading);
+    font-size: var(--h2-font-size);
+    text-transform: uppercase;
+    font-weight: 200;
+    letter-spacing: 0.1rem;
+    text-align: center;
+    max-width: var(--max-width);
+}
+
+.angebot__list__item__title, .uber-mich__list__item__title {
+    font-family: var(--heading);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    margin: 1.25rem 0 0;
+    text-align: center;
+}
+
+.angebot__content, .uber-mich__content {
+    text-align: center;
+    line-height: 1.5rem;
+}
+
+.angebot__content--highlight, .uber-mich__content--highlight {
+    font-family: var(--heading);
+    font-size: var(--h3-font-size);
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-weight: 200;
+    letter-spacing: 0.1rem;
+    text-align: center;
+}
+
+.angebot__list, .uber-mich__list {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2.5rem;
+}
+
+.angebot__list__row, .uber-mich__list__row {
+    display: flex;
+    gap: 2rem;
+    margin: 2.5rem 0 0;
+}
+
+.angebot__list__img, .uber-mich__list__img {
+    flex: 1 1;
+    background-image: url('css-images/backgrounds/einzewidinge-ordnungscoach.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    border-radius: 5px;
+}
+
+.angebot__list__copy, .uber-mich__list__copy {
+    flex: 1 1;
+}
+
+.angebot__list__copy ul {
+    list-style: revert;
+}
+
+.angebot__list__copy li {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    list-style: revert;
+}
+
+.angebot__list__copy li::marker {
+    color: var(--color2);
+    font-size: 1.5em;
+}
+
+.angebot__list__item {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.angebot__list__item__copy {
+    margin: 1.25rem 0;
+    text-align: center;
+}
+
+.angebot__footer {
+    margin-top: 2.5rem;
+    font-family: var(--heading);
+    font-size: var(--h3-font-size);
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-weight: 200;
+    letter-spacing: 0.1rem;
+    text-align: center;
+}
+
+.angebot__control {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.angebot__list__item__marker {
+    width: 3.125rem;
+    height: 3.125rem;
+    border-radius: 50%;
+    border: 0.625rem solid #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.angebot__content--em {
+    font-size: 1.5rem;
+    color: var(--color2);
+    font-family: var(--heading);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+}
+
+.angebot--kleidershrank {
+    background-color: var(--kleidershrank);
+}
+
+.angebot--kleidershrank .angebot__list__img {
+    background-image: url('css-images/backgrounds/einzewidinge-klarheit-im-kleiderschrank.jpg');
+    background-size: cover;
+    background-position: 0% 30%;
+}
+
+.angebot--homeoffice {
+    background-color: var(--homeoffice);
+}
+
+.angebot--homeoffice .angebot__list__img {
+    background-image: url('css-images/backgrounds/einzewidinge-homeoffice-mit-struktur.jpg');
+    background-size: cover;
+    background-position: 52%;
+}
+
+.angebot--homeoffice .angebot__list__copy li::marker {
+    color: revert;
+    font-size: 1.5em;
+}
+
+.angebot--umzug {
+    background-color: var(--umzug);
+}
+
+.angebot--umzug .angebot__list__img {
+    background-image: url('css-images/backgrounds/einzewidinge-umzug-ohne-ballast.jpg');
+    background-size: cover;
+    background-position: center 30%;
+}
+
+.angebot--pricing {
+    background-color: var(--color4);
+}
+
+.angebot__list__item__icon {
+    font-size: var(--h1-font-size);
+}
+
+/* über mich */
+.uber-mich__content--highlight {
+    line-height: revert;
+}
+
+.uber-mich--subsection:nth-child(odd) {
+    background: var(--color1);
+}
+
+.uber-mich--subsection:nth-child(even) {
+    background: var(--color2);
+}
+
+.uber-mich__list--reverse {
+    flex-direction: row-reverse;
+}
+
+.uber-mich__wrapper {
+   padding: 3.125rem 0 0;
+}
+
+.uber-mich__wrapper--subsection {
+    padding: 0;
+}
+
+.uber-mich__list__copy {
+    line-height: 1.4rem;
+}
+
+.uber-mich__list__img--book {
+    background-image: url('css-images/backgrounds/einzweidinge-uber-mich-2.jpg');
+}
+
+.uber-mich__list__img--coathanger {
+    background-image: url('css-images/backgrounds/einzweidinge-uber-mich-1.jpg');
+}
+
+.uber-mich__list__img--office {
+    background-image: url('css-images/backgrounds/einzweidinge-uber-mich-3.jpg');
+}
+
+
+/* breakpoints */
+@media only screen and (max-width: 1020px) {
+    .services__list {
+        flex-direction: column;
+    }
+
+    .top-nav__hamburger, .top-nav__hamburger::before {
+        display: none;
+    }
+
+    .service__description {
+        text-align: center;
+        padding: 3.125rem 0.938rem 0.938rem;
+    }
+
+    .services__row {
+        flex-direction: column;
+        min-height: revert;
+    }
+
+    .services__card__details__header {
+        margin-bottom: 0;
+    }
+
+    .blog__row {
+        flex-direction: column;
+    }
+
+    .clean-up__description {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .clean-up__why__cards__row {
+        flex-direction: column;
+    }
+
+    .footer__row {
+        flex-direction: column;
+        margin-bottom: 1.25rem;
+        align-items: center;
+    }
+
+    .footer__list li {
+        display: flex;
+        justify-content: center;
+        margin-left: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    .text-link {
+        display: block;
+        margin: 0.5rem 0 0;
+    }
+
+    .footer__copy {
+        margin-top: 0.5rem;
+    }
+
+    /* angebot page */
+    .angebot__content {
+        margin-bottom: 2rem;
+    }
+
+    .angebot__list, .uber-mich__list {
+        flex-direction: column;
+        margin-top: 0;
+    }
+
+    .angebot__list__img, .uber-mich__list__img {
+        height: 400px;
+        min-height: 400px;
+    }
+
+    .angebot__list__copy ul {
+        padding: 0 1rem;
+    }
+
+    .angebot__list__row, .uber-mich__list__row {
+        flex-direction: column;
+    }
+
+    /* über mich page */
+    .uber-mich__content--highlight {
+        margin-bottom: 1rem;
+    }
+}
+
+@media only screen and (max-width: 710px) {
+    * {
+        --h1-font-size: 3rem;
+        --h2-font-size: 2rem;
+        --h3-font-size: 1.2rem;
+    }
+
+    .top-nav__wrapper__links__list {
+        display: none;
+    }
+
+    .top-nav__hamburger, .top-nav__hamburger::before {
+        display: block;
+        font-size: var(--h2-font-size);
+    }
+
+    .top-nav__logo {
+        height: 80px;
+    }
+
+    .intro::before {
+        background-position: 58%;
+    }
+
+    .blog__wrapper, .questions__wrapper, .clean-up__wrapper {
+        padding: 3.125rem 0;
+    }
+
+    .footer__logo {
+        margin-bottom: 1rem;
+    }
+
+    .services {
+        padding: 3.125rem 1.5rem;
+    }
+
+    .intro__strap {
+        font-size: var(--h2-font-size);
+    }
+
+    .button-link--intro {
+        font-size: 0.65rem;
+        letter-spacing: 0.01rem;
+    }
+
+    .button-link--gap {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .angebot__list__img, .uber-mich__img {
+        height: 250px;
+        min-height: 250px;
+    }
+
+    .angebot__list__row, .uber-mich__row {
+       margin: 0;
+    }
+
+    .angebot__control, .clean-up__control {
+        flex-direction: column;
+    }
 }
 
 /* animations */
@@ -733,141 +1261,16 @@ ul, li, h1, h2, h3 {
     }
 }
 
-/* breakpoints */
-@media only screen and (max-width: 1020px) {
-    .service {
-        flex-direction: column-reverse;
-        align-items: revert;
-    }
-
-    .service__description {
-        text-align: center;
-        padding: 3.125rem 0.938rem 0.938rem;
-    }
-
-    .service__visual {
-        display: flex;
-        justify-content: center;
-        align-self: center;
-        margin-left: 0;
-        margin-bottom: -3.125rem;
-        position: relative;
-    }
-
-    .blog__row {
-        flex-direction: column;
-    }
-
-    .clean-up__description {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .clean-up__description__visual {
-        margin-right: 0;
-        margin-bottom: 2.5rem;
-    }
-
-    .clean-up__description__text {
-        text-align: center;
-    }
-
-    .clean-up__why__cards__row {
-        flex-direction: column;
-    }
-
-    .footer__row {
-        flex-direction: column;
-    }
-
-    .footer__list li {
-        display: flex;
-        justify-content: center;
-    }
-
-    .text-link {
-        display: block;
-        margin: 0.5rem 0 0;
-    }
-
-    .questions__overview__text {
-        text-align: center;
-    }
-
-    .footer__copy {
-        margin-top: 0.5rem;
-    }
-}
-
-@media only screen and (max-width: 568px) {
-    * {
-        --h1-font-size: 3rem;
-        --h2-font-size: 2rem;
-        --h3-font-size: 1.5rem;
-    }
-
-    .blog__wrapper, .questions__wrapper, .clean-up__wrapper {
-        padding: 3.125rem 0;
-    }
-
-    .footer__logo {
-        margin-bottom: 1rem;
-    }
-
-    .services {
-        padding: 3.125rem 1.5rem;
-    }
-
-    .intro__image {
-        max-width: 250px;
-        margin-top: 3rem;
-    }
-
-    .intro__strap {
-        font-size: 0.89rem;
-    }
-
-    .button-link--cursive {
-        font-family: revert;
-        font-size: 0.65rem;
-        letter-spacing: 0.01rem;
-    }
-}
-
 @keyframes gradient {
     0% {
         background-position: 0% 50%;
     }
+
     50% {
         background-position: 100% 50%;
     }
+
     100% {
         background-position: 0% 50%;
-    }
-}
-
-@keyframes shake {
-    0% {
-        transform: translateX(0)
-    }
-
-    6.5% {
-        transform: translateX(-6px) rotateY(-9deg)
-    }
-
-    18.5% {
-        transform: translateX(5px) rotateY(7deg)
-    }
-
-    31.5% {
-        transform: translateX(-3px) rotateY(-5deg)
-    }
-
-    43.5% {
-        transform: translateX(2px) rotateY(3deg)
-    }
-
-    50% {
-        transform: translateX(0)
     }
 }

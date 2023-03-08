@@ -1,0 +1,26 @@
+{
+  "name": "einzweidinge",
+  "version": "1.0.0",
+  "description": "Jasmin's Side Hustle",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "stylelint": "^15.2.0",
+    "stylelint-config-standard": "^30.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "stylelint src '**/*.css'",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MikeSav/einzweidinge.git"
+  },
+  "author": "Mike",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MikeSav/einzweidinge/issues"
+  },
+  "homepage": "https://github.com/MikeSav/einzweidinge#readme"
+}

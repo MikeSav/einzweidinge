@@ -1,0 +1,17 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "selector-class-pattern": [
+      "^.*$",
+      {
+        "message": "Expected class selector to be a BEM-style"
+      }
+    ],
+    "color-hex-length": "long",
+    "alpha-value-notation": "number",
+    "color-function-notation": "legacy",
+    "no-descending-specificity": null,
+    "keyframes-name-pattern": "^.*$",
+    "color-hex-case": "upper"
+  }
+}
