@@ -4,141 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>einzweidinge</title>
-    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <!-- favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
-    <!-- fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300&family=Oswald:wght@200;300;400&display=swap"
-          rel="stylesheet">
+
     <script src="assets/js/scripts.js"></script>
 </head>
 <body class="body">
 <!-- menu -->
-<div class="ham-menu">
-    <div class="ham-menu__close"><i class="fa-solid fa-circle-xmark" onclick="closeHamburgerMenu()"></i></div>
-    <div class="ham-menu__items">
-        <ul class="ham-menu__items__list">
-            <li><a href="#" class="ham-menu__link">heim</a></li>
-            <li><a href="angebot.html" class="ham-menu__link">angebot</a></li>
-            <li><a href="ueber-mich.html" class="ham-menu__link">über mich</a></li>
-            <li><a href="blog.html" class="ham-menu__link">blog</a></li>
-            <li><a href="english.html" class="ham-menu__link">english</a></li>
-            <li><a href="#" class="ham-menu__link">kontakt</a></li>
-        </ul>
-        <!-- we need social icon -->
-        <div>
-            <ul class="ham-menu__items__social-list">
-                <li>
-                    <img src="styles/css-images/social-icons/pinterest.svg">
-                </li>
-                <li>
-                    <img src="styles/css-images/social-icons/instagram.svg">
-                </li>
-                <li>
-                    <img src="styles/css-images/social-icons/facebook.svg">
-                </li>
-                <li>
-                    <img src="styles/css-images/social-icons/whatsapp.svg">
-                </li>
-                <li>
-                    <img src="styles/css-images/social-icons/linkedin.svg">
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-<!-- navigation -->
-<div class="top-nav">
-    <div class="top-nav__wrapper">
-        <div>
-            <img src="styles/css-images/logos/ein-zwei-dinge.svg" class="top-nav__logo">
-        </div>
-        <div class="top-nav__wrapper__links">
-            <i class="top-nav__hamburger fa-solid fa-bars" onclick="showHamburgerMenu()"></i>
-            <!-- social -->
-            <ul class="top-nav__wrapper__links__list">
-                <li>
-                    <img src="styles/css-images/social-icons/pinterest.svg">
-                </li>
-                <li>
-                    <img src="styles/css-images/social-icons/instagram.svg">
-                </li>
-                <li>
-                    <img src="styles/css-images/social-icons/facebook.svg">
-                </li>
-                <li>
-                    <img src="styles/css-images/social-icons/whatsapp.svg">
-                </li>
-                <li>
-                    <img src="styles/css-images/social-icons/linkedin.svg">
-                </li>
-            </ul>
-            <!-- links and the like -->
-            <ul class="top-nav__wrapper__links__list">
-                <li><a href="index.html" class="text-link">heim</a></li>
-                <li><a href="angebot.html" class="text-link">angebot</a></li>
-                <li><a href="ueber-mich.html" class="text-link">über mich</a></li>
-                <li><a href="blog.html" class="text-link">blog</a></li>
-                <li><a href="english.html" class="text-link">english</a></li>
-                <li><a href="#" class="text-link">kontakt</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-<!-- intro -->
-<div class="four-oh-four">
+<div class="page-intro">
     <div>
-        <h1 class="four-oh-four__strap">Alter, du bist verloren!</h1>
+        <h1 class="intro__strap">ein, zwei Blogartikel...</h1>
     </div>
 </div>
-<!-- blog article -->
+<div class="blog">
+    <div class="blog__wrapper">
+        <div class="blog__header">
+            <h2 class="blog__header__heading">Blog Posts</h2>
+        </div>
+    </div>
+    <div class="blog__row blog__row--wrap">
+        <?php
+          if (have_posts()) {
+              while(have_posts()) {
+          ?>
 
-<!-- footer -->
-<!--
-<div class="footer">
-    <div class="footer__wrapper">
-        <div class="footer__row">
-            <div>
-                <img src="styles/css-images/logos/ein-zwei-dinge.svg" class="footer__logo">
-            </div>
-            <div class="footer__certificates">
-                <img src="styles/css-images/certificates/ordnungs-welt-certificate-1.png">
-                <img src="styles/css-images/certificates/ordnungs-welt-certificate-2.png">
-            </div>
-        </div>
-        <div class="footer__row">
-            <div class="footer__links">
-                <ul class="footer__list">
-                    <li><a href="index.html" class="text-link">heim</a></li>
-                    <li><a href="angebot.html" class="text-link">angebot</a></li>
-                    <li><a href="ueber-mich.htm" class="text-link">über mich</a></li>
-                    <li><a href="blog.html" class="text-link">blog</a></li>
-                    <li><a href="english.html" class="text-link">english</a></li>
-                    <li><a href="#" class="text-link">kontakt</a></li>
-                    <li><a href="#" class="text-link">datenschutz</a></li>
-                    <li><a href="#" class="text-link">impressum</a></li>
-                </ul>
-                <div class="footer__social">
-                    <ul>
-                        <li><img src="styles/css-images/social-icons/pinterest.svg"></li>
-                        <li><img src="styles/css-images/social-icons/instagram.svg"></li>
-                        <li><img src="styles/css-images/social-icons/facebook.svg"></li>
-                        <li><img src="styles/css-images/social-icons/whatsapp.svg"></li>
-                        <li><img src="styles/css-images/social-icons/linkedin.svg"></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer__copy">
-                &copy; 2023
-            </div>
-        </div>
+        <?php the_post(); ?>
+
+
+
+        <?php
+            }
+        }
+    ?>
     </div>
 </div>
--->
+<?php get_footer(); ?>
+
 </body>
 </html>
 
